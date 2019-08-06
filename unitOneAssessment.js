@@ -1,35 +1,76 @@
+// JOSEPH P. PASAOA
+//
+
+// custom function declarations
+const debug = (logThis) => {
+  console.log(logThis);
+}
+
+
+
 let assert = require('assert')
 
 // Question One:
 
 // Write a function called isOdd that returns whether or not a number is odd.
 // If something that is not a number is passed in, return false.
-
+debug(1);
+const isOdd = ( (elem) => {
+  return !!(elem % 2);
+} );
 
 // Uncomment out the next line to test your solution
-// runQ1Tests()
+runQ1Tests()
 
 
 // Question Two:
 
 // Write a function called numberOfDigits that returns how many digits are in a given number
+debug(2);
+const numberOfDigits = (num) => {
+  return (num + '').length;
+}
 
 // Uncomment out the next line to test your solution
-// runQ2Tests()
+runQ2Tests()
 
 // Question Three:
 
 // Write a function called disemvowel that removes all of the vowels from a string.
 // Treat y as a consonant, not a vowel
+debug(3);
+function disemvowel(str) {
+  return str
+    .split('')
+    .filter( function(letter) {
+        return !(letter.toLowerCase() === "a" || letter.toLowerCase() === "e" || letter.toLowerCase() === "i" ||
+          letter.toLowerCase() === "o" || letter.toLowerCase() === "u");
+    } )
+    .join('');
+}
 
 // Uncomment out the next line to test your solution
-// runQ3Tests()
+runQ3Tests()
 
 // Question Four:
 // Write a function called secondSmallest that returns the second smallest number in an array
+debug(4);
+function secondSmallest(arr) {
+   // (arr.sort( (a, b) => a - b ))[1]; /* THE EASIER WAY :p */
+   /* A LONGER WAY */
+   let smallArr = [arr[0]];
+   for (let i = 1; i < arr.length; i++) {
+      if (arr[i] < smallArr[0]) {
+        smallArr.splice(0, 0, arr[i]);
+      } else if (!smallArr[1] || arr[i] < smallArr[1]) {
+        smallArr.splice(1, 1, arr[i]);
+      }
+   }
+   return smallArr[1];
+}
 
 // Uncomment out the next line to test your solution
-// runQ4Tests()
+runQ4Tests()
 
 // Question Five:
 // Write a function called getLocations that takes in an array of objects that look like the array below,
@@ -41,18 +82,26 @@ let assert = require('assert')
 
 // Sample output:
 // ["Algeria", "Belize", "China", "Denmark"]
+debug(5);
+const getLocations = (arr) => {
+  return arr.map( obj => obj.location );
+}
 
 // Uncomment out the next line to test your solution
-// runQ5Tests()
+runQ5Tests()
 
 
 // Question Six:
 
 // Write a function called onlyOddStrings that takes in an array of strings as input and returns an array that only includes strings with an odd number of characters
 // Your function should use a higher-ordered function (e.g map, filter, reduce, every, sort) in its implementation
+debug(6);
+const onlyOddStrings = (arr) => {
+  return arr.filter( str => str.length % 2 );
+}
 
 // Uncomment out the next line to test your solution
-// runQ6Tests()
+runQ6Tests()
 
 
 // Question Seven:
@@ -69,9 +118,24 @@ let assert = require('assert')
 //b.
 // Make a function called getAllDayDescriptions that takes in an array of Day objects and returns an array of their descriptions.  Use a higher-ordered function (e.g map, filter, reduce, every, sort) in your implementation.
 // The output should be in the same order as the input
+debug(7);
+class Day {
+  constructor (temperature, weather) {
+    this.temperature = temperature;
+    this.weather = weather;
+  }
+  
+  getDescription() {
+    return `It is ${this.temperature} degrees and ${this.weather}`;
+  };
+}
+
+function getAllDayDescriptions(arr) {
+  return arr.map( dayObj => dayObj.getDescription() );
+}
 
 // Uncomment out the next line to test your solution
-// runQ7Tests()
+runQ7Tests()
 
 
 
